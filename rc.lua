@@ -10,6 +10,8 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+-- freedesktop menu
+local freedesktop = require("freedesktop")
 -- my libraries
 local battery_widget = require("widgets.battery")
 
@@ -104,12 +106,27 @@ myawesomemenu = {
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end}
 }
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
-
+myexitmenu = {
+    { "log out", function() awesome.quit() end, menubar.utils.lookup_icon("system-log-out") },
+    { "suspend", "systemctl suspend", menubar.utils.lookup_icon("system-suspend") },
+    { "hibernate", "systemctl hibernate", menubar.utils.lookup_icon("system-suspend-hibernate") },
+    { "reboot", "systemctl reboot", menubar.utils.lookup_icon("system-reboot") },
+    { "shutdown", "poweroff", menubar.utils.lookup_icon("system-shutdown") }
+}
+mymainmenu = freedesktop.menu.build({
+    icon_size = 64,
+    before = {
+        { "Terminal", terminal, menubar.utils.lookup_icon("utilities-terminal") },
+        { "Browser", browser, menubar.utils.lookup_icon("internet-web-browser") },
+        { "Files", filemanager, menubar.utils.lookup_icon("system-file-manager") },
+        -- other triads can be put here
+    },
+    after = {
+        { "Awesome", myawesomemenu, "/usr/share/awesome/icons/awesome64.png" },
+        { "Exit", myexitmenu, menubar.utils.lookup_icon("system-shutdown") },
+        -- other triads can be put here
+    }
+})
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
@@ -240,6 +257,7 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
+            mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
