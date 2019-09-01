@@ -1,2 +1,2 @@
-# s1mpl3-tablet
-simple awesomewm theme for tablets
+# s1mpl3
+simple awesome wm theme
