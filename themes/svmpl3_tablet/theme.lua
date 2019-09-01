@@ -1,14 +1,14 @@
------------------------------
---  svmpl3: awesome theme  --
---        by n0nvme        --
------------------------------
+------------------------------------
+--  s1mpl3-tablet: awesome theme  --
+--     for tablet by n0nvme       --
+------------------------------------
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
-local theme_path = "~/.config/awesome/themes/svmpl3/"
+local theme_path = "~/.config/awesome/themes/s1mpl3-tablet/"
 
 local theme = {}
 
