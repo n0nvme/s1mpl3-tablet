@@ -12,7 +12,7 @@ local theme_path = "~/.config/awesome/themes/s1mpl3-tablet/"
 
 local theme = {}
 
-theme.font          = "terminus 9"
+theme.font          = "terminus 12"
 
 theme.bg_normal     = "#002B36"
 theme.bg_focus      = "#003A40"

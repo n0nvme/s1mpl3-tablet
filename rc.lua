@@ -494,6 +494,11 @@ awful.rules.rules = {
      }
     },
 
+    {
+      rule = { instance = "onboard"},
+      properties = { floating = true, focusable = false, minimized = false, hidden = false}
+    },
+
     -- Floating clients.
     { rule_any = {
         instance = {
