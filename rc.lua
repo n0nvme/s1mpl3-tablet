@@ -14,6 +14,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local freedesktop = require("freedesktop")
 -- my libraries
 local battery_widget = require("widgets.battery")
+local lain = require("lain")
 
 
 -- Enable hotkeys help widget for VIM and other apps
@@ -157,6 +158,12 @@ kbdcfg.widget:buttons(awful.util.table.join(
 
 --}}}
 
+-- {{{ lain widgets
+local ram_widget = lain.widgets.mem()
+
+-- }}}
+
+
 -- {{{ battery widget
 btr = {}
 btr.widget = wibox.widget.textbox()
@@ -266,6 +273,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- btr.widget,
             battery_widget,
+            ram_widget,
             kbdcfg.widget,
             wibox.widget.systray(),
             mytextclock,
