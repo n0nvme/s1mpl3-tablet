@@ -44,15 +44,6 @@ theme.border_marked = "#91231c"
 -- Example:
 -- theme.taglist_bg_focus = "#ff0000"
 
--- Generate taglist squares:
-local taglist_square_size = dpi(8)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
-
 -- Variables set for theming notifications:
 theme.notification_opacity = 10
 -- notification_font
@@ -64,7 +55,7 @@ theme.notification_opacity = 10
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = theme_path.."submenu.png"
-theme.menu_height = dpi(25)
+theme.menu_height = dpi(35)
 theme.menu_width  = dpi(200)
 
 -- You can add as many variables as
