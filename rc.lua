@@ -46,9 +46,11 @@ do
 end
 -- }}}
 
+rc_path = "~/.config/awesome/"
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/themes/" .. "s1mpl3-tablet/theme.lua")
+beautiful.init(rc_path .. "themes/s1mpl3-tablet/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "terminator"
@@ -629,4 +631,9 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+-- }}}
+
+-- {{{ autorun programms
+awful.spawn.with_shell("sh " .. rc_path .. "autorun.sh")
+
 -- }}}
