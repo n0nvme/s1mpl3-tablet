@@ -11,3 +11,4 @@ run nm-applet
 run pa-applet
 run blueman-applet
 run flameshot
+run onboard
