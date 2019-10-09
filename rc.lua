@@ -13,7 +13,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- freedesktop menu
 local freedesktop = require("freedesktop")
 -- my libraries
-local battery_widget = require("widgets.battery")
+-- local battery_widget = require("widgets.battery")
 local lain = require("lain")
 
 
@@ -162,6 +162,12 @@ kbdcfg.widget:buttons(awful.util.table.join(
 
 -- {{{ lain widgets
 local ram_widget = lain.widgets.mem()
+local battery_widget = lain.widgets.bat {
+    timeout = 5,
+    settings = function()
+        widget:set_markup("🔋: " .. bat_now.perc .. "% " .. bat_now.status)
+    end
+}
 
 -- }}}
 
@@ -259,7 +265,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 35 })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 50 })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -274,7 +280,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- btr.widget,
-            battery_widget,
+            battery_widget.widget,
             ram_widget,
             kbdcfg.widget,
             wibox.widget.systray(),
