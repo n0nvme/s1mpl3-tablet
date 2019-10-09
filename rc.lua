@@ -161,7 +161,6 @@ kbdcfg.widget:buttons(awful.util.table.join(
 --}}}
 
 -- {{{ lain widgets
-local ram_widget = lain.widgets.mem()
 local battery_widget = lain.widgets.bat {
     timeout = 5,
     settings = function()
@@ -281,7 +280,6 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- btr.widget,
             battery_widget.widget,
-            ram_widget,
             kbdcfg.widget,
             wibox.widget.systray(),
             mytextclock,
