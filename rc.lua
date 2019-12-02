@@ -14,6 +14,9 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local freedesktop = require("freedesktop")
 -- my libraries
 local lain = require("lain")
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
 
 -- Enable hotkeys help widget for VIM and other apps
@@ -140,10 +143,12 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mykeyboardlayout = awful.widget.keyboardlayout()
 kbdcfg = {}
 kbdcfg.cmd = "setxkbmap"
+kbdcfg.font = 'terminus 10'
 kbdcfg.layout = { { "us", "", "🇺🇸" }, { "ru", "", "🇷🇺" } }
 kbdcfg.current = 1  -- us is our default layout
 kbdcfg.widget = wibox.widget.textbox()
 kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][3] .. " ")
+kbdcfg.widget.font = 'terminus 25'
 kbdcfg.switch = function ()
    kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
    local t = kbdcfg.layout[kbdcfg.current]
@@ -266,7 +271,23 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            require('widget.battery'),
+            -- require('widget.battery'),
+            ram_widget({
+                
+            }),
+            cpu_widget({
+                width = 70,
+                step_width = 5,
+                --step_spacing = 0,
+                --color = '#434c5e'
+            }),
+            batteryarc_widget({
+                warning_msg_position = 'top_right',
+                font = 'terminus 11',
+                show_current_level = true,
+                thickness = 5,
+                main_color = '#00ff00',
+            }),
             -- btr.widget,
             kbdcfg.widget,
             wibox.widget.systray(),
