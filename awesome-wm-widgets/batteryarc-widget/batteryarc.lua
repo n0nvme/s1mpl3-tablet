@@ -157,7 +157,7 @@ local function worker(args)
                         title = "Battery status",
                         timeout = 5,
                         hover_timeout = 0.5,
-                        width = 200,
+                        width = 300,
                     }
                 end)
     end
